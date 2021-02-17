@@ -15,7 +15,7 @@ import pymongo
 import webbrowser
 from webbrowser import Chrome
 import datetime
-from win32com.shell import shell as shell
+from win32api import ShellExecute
 
 class WinForm(QMainWindow, Ui_MainWindow):
 
@@ -159,7 +159,7 @@ class WinForm(QMainWindow, Ui_MainWindow):
             f.writelines(file)
 
         if "1" in (subprocess.check_output('sc query "mongodb"').decode('utf-8').split('\r\n')[3]):
-            shell.ShellExecuteEx(lpVerb='runas', lpFile='cmd.exe', lpParameters='/c ' + "sc start MongoDB")
+            ShellExecute(lpVerb='runas', lpFile='cmd.exe', lpParameters='/c ' + "sc start MongoDB")
 
         command = 'node ./NodejsWebApp1/server.js'  # /NodejsWebApp1
         #self.p.communicate(command)
