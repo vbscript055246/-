@@ -31,15 +31,15 @@ npm install
 ```
 pyinstaller -F .\Launcher.py
 ```
-2. get the "Launcher.exe" in "dist" folder
-3. put it in the "NodejsWebApp1 ver [5.3.4 or 5.2.4]" folder
+2. Get the "Launcher.exe" in "dist" folder
+3. Put it in the "NodejsWebApp1 ver [5.3.4 or 5.2.4]" folder
 
 ### 4. Start platform
 1. Open Launcher.exe
 2. Click Create the users' account and password
 3. (option) Set second for every quiz and network port 
 4. Click launch and the server will start soon
-5. login in admin page use Account: admin Password: admin
+5. Login in admin page use Account: admin Password: admin
 
 ## Data description
 ![](https://i.imgur.com/dH0ryZp.png)
@@ -60,12 +60,12 @@ pyinstaller -F .\Launcher.py
 
 ## Postscript
 - justPrintDbToXlsx.py 
-    - just extract data from the database to xlsx
+    - Just extract data from the database to xlsx
     - Msgdate output in UTC+8
 - main-DB.py
-    - example splitting data by different teammate and test round and give a time slot tag
+    - Example splitting data by different teammate and test round and give a time slot tag
 - main-DB-test.py (Debugging)
-    - example calculating "quiz_clas 4 5 6" score and plot them on a graph using matplotlib
+    - Example calculating "quiz_clas 4 5 6" score and plot them on a graph using matplotlib
 - 遠距聯想測驗.xlsx
     - "quiz_clas 4 5 6" model answer
 
