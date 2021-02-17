@@ -5,24 +5,23 @@
 This a open-source tool.
 
 ## Requirements
-Node.js >= 14.15.5
-python >= 3.6
-MongoDB >= 4.0.22
+- Node.js >= 14.15.5
+- python >= 3.6
+- MongoDB >= 4.0.22
 
 ## Installation
 
 ### 1. Set PATH
-open windows search bar type "環境變數" or "environment variable"
-Set [MongoDB File location]\\Server\\[version]\\bin to PATH
+- open windows search bar type "環境變數" or "environment variable"
+- Set [MongoDB File location]\\Server\\[version]\\bin to PATH
 
 ### 2. Install package
 1. Install python package
 ```
 pip install -r requirements.txt
 ```
-2. Install node.js package under 
-NodejsWebApp1 ver [5.3.4 or 5.2.4]\NodejsWebApp1 folder
-
+2. Install node.js package
+- In "NodejsWebApp1 ver [5.3.4 or 5.2.4]\NodejsWebApp1" folder
 ```
 npm install
 ```
@@ -32,15 +31,43 @@ npm install
 ```
 pyinstaller -F .\Launcher.py
 ```
-2. get the "Launcher.exe" in dist folder
-3. put it in the NodejsWebApp1 ver [5.3.4 or 5.2.4] folder
+2. get the "Launcher.exe" in "dist" folder
+3. put it in the "NodejsWebApp1 ver [5.3.4 or 5.2.4]" folder
 
 ### 4. Start platform
 1. Open Launcher.exe
-2. Create users'account and users'password
-3. (option) Set second for every quiz and network port
-4. Click launch and server will start soon
-5. login in admin page use Account:admin Password:admin
+2. Click Create the users' account and password
+3. (option) Set second for every quiz and network port 
+4. Click launch and the server will start soon
+5. login in admin page use Account: admin Password: admin
+
+## Data description
+![](https://i.imgur.com/dH0ryZp.png)
+- username: 受試者代號
+- mode:
+    - 1 = 單人作答
+    - 2 = 雙人作答
+- quiz_class: 
+    - 1 = 擴散思考1
+    - 2 = 擴散思考2
+    - 3 = 擴散思考3
+    - 4 = 遠距聯想1
+    - 5 = 遠距聯想2 
+    - 6 = 遠距聯想3
+- quiz_no: 題號
+- quiz_ans: 受試者回答答案
+- Msgdate: 輸入時間戳記(UTC+0)
+
+## Postscript
+- justPrintDbToXlsx.py 
+    - just extract data from the database to xlsx
+    - Msgdate output in UTC+8
+- main-DB.py
+    - example splitting data by different teammate and test round and give a time slot tag
+- main-DB-test.py (Debugging)
+    - example calculating "quiz_clas 4 5 6" score and plot them on a graph using matplotlib
+- 遠距聯想測驗.xlsx
+    - "quiz_clas 4 5 6" model answer
 
 ## LICENSE
 ```
