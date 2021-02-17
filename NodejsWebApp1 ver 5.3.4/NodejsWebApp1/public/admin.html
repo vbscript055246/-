@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="./js/cookie.js" type="text/javascript"></script>
+    <script>
+        var socket = io();
+    </script>
+    <title>模式選擇頁</title>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+
+            socket.on("connect", function(SKT) {
+                console.log("Connected.");
+                $("#next").attr('disabled', 'disabled');
+                $("#StartQuiz").attr('disabled', 'disabled');
+                setChannel();
+            });
+
+            socket.on("online", function(arg) { //上線人數
+                document.getElementById("online").innerText = arg - 1;
+            });
+
+            socket.on("user_ready", function() { //準備好進下一題
+                document.getElementById("state").innerText = "ready";
+                $("#next").removeAttr('disabled');
+            });
+
+            socket.on("return_stage_ptr", function(arg) { //上線人數
+                document.getElementById("stage").innerText = "階段: " + (arg + 1);
+            });
+
+        });
+
+        function setChannel() {
+            socket.emit("setChannel", getCookie("userid"));
+        }
+    </script>
+</head>
+
+<body style="font-family: 'DFKai-SB';">
+    <h1 id="online" style="font-family: 'Times New Roman';">0</h1>
+    <h1 id="state" style="font-family: 'Times New Roman';">not ready</h1>
+    <h1 id="stage" style="font-family: 'Times New Roman';">階段: </h1>
+    <!--"擴散1", "擴散2", "遠距1", "遠距2"-->
+    <input type="radio" name="mode" value="1">甲、(擴散1單人 遠距1單人 擴散2雙人 遠距2雙人)<br>
+    <input type="radio" name="mode" value="2">乙、(遠距2單人 擴散2單人 遠距1雙人 擴散1雙人)<br>
+    <input type="radio" name="mode" value="3">丙、(遠距2雙人 擴散2雙人 遠距1單人 擴散1單人)<br>
+    <input type="radio" name="mode" value="4">丁、(擴散1雙人 遠距1雙人 擴散2單人 遠距2單人)<br>
+    <input type="radio" name="mode" value="5">戊、(擴散1單人 遠距1單人 擴散2單人 遠距2單人)<br>
+    <input type="radio" name="mode" value="6">己、(遠距2單人 擴散2單人 遠距1單人 擴散1單人)<br>
+    <input type="radio" name="mode" value="7">庚、(遠距2單人 擴散2單人 遠距1單人 擴散1單人)<br>
+    <input type="radio" name="mode" value="8">辛、(擴散1單人 遠距1單人 擴散2單人 遠距2單人)<br>
+
+    <button type="button" onclick="start()" id="start" style="font-family: 'DFKai-SB';">設定題目</button>
+    <button type="button" onclick="next()" id="next" style="font-family: 'DFKai-SB';">入載下個試題</button>
+    <button type="button" onclick="startquiz()" id="StartQuiz" style="font-family: 'DFKai-SB';">開始測驗</button>
+
+    <script>
+        function start() {
+            // get mode from radio button
+            var objs = document.getElementsByName("mode");
+            for (var i = 0; i < objs.length; i++) {
+                if (objs[i].checked) {
+
+                    // send set mode
+                    socket.emit('SetQuizMode', i);
+
+                    $("#start").attr('disabled', 'disabled');
+                    $("#next").removeAttr('disabled');
+                    // document.getElementById("state").innerText = "not ready";
+                    break;
+                }
+            }
+        }
+
+        function next() {
+            $("#next").attr('disabled', 'disabled');
+            $("#StartQuiz").removeAttr('disabled');
+            socket.emit('admin_next');
+        }
+
+        function startquiz() {
+            document.getElementById("state").innerText = "not ready";
+            $("#StartQuiz").attr('disabled', 'disabled');
+            socket.emit('admin_startquiz');
+        }
+    </script>
+</body>
+
+</html>

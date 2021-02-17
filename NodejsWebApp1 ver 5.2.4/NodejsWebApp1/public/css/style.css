@@ -1,0 +1,84 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    top: 50px;
+    display: block;
+    position: relative;
+}
+
+#status-box {
+    text-align: right;
+    font-size: .6em;
+}
+
+#content {
+    margin: 0 250px;
+    height: 500px;
+    border-radius: 5px;
+    overflow: auto;
+}
+
+#send-box {
+    width: 100%;
+    text-align: center;
+}
+
+#send-box input {
+    display: inline-block;
+}
+
+input[name="name"] {
+    width: 15%;
+}
+
+input[name="msg"] {
+    width:100%;
+    border-width:0px;
+}
+
+#answer-box{
+    margin:0;
+    border: none;
+    border-bottom: 1px solid #CCC;
+}
+
+input[type="button"] {
+    width: 10%;
+}
+
+.msg {
+    width: 73%;
+    display: inline-block;
+}
+
+.msg > span {
+    width: 25%;
+    display: inline-block;
+}
+
+.msg > span::before {
+    color: darkred;
+    content: " { ";
+} 
+
+.msg > span::after {
+    color: darkred;
+    content: " } ";
+}        
+
+#title {
+    font-size: 40px;
+    text-align: center;
+}
+
+#describe {
+    font-size: 30px;
+    text-align: center;
+}
+
+#time {
+    font-size: 30px;
+}
