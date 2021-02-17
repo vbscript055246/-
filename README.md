@@ -12,7 +12,7 @@ This a open-source tool.
 ## Installation
 
 ### 1. Set PATH
-- open windows search bar type "環境變數" or "environment variable"
+- Open windows search bar type "環境變數" or "environment variable"
 - Set [MongoDB File location]\\Server\\[version]\\bin to PATH
 
 ### 2. Install package
